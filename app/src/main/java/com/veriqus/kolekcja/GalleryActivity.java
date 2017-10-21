@@ -17,7 +17,7 @@ public class GalleryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
 
-        RecyclerView rv = (RecyclerView) findViewById(R.id.recycler_view);
+        RecyclerView rv = (RecyclerView) findViewById(R.id.recycler_view_gallery);
         gallery = GalleryItem.makeGallery();
 
         GalleryAdapter adapter = new GalleryAdapter(this, gallery);
