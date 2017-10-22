@@ -33,7 +33,6 @@ public class TrackListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_track_list);
 
         trackList = new ArrayList<>();
-        trackList.add(new TrackItem("Tap Me", Uri.parse("android.resource://"+getPackageName()+"/raw/tapme")));
         trackList.add(new TrackItem("Intensity", Uri.parse("android.resource://"+getPackageName()+"/raw/intensity")));
         trackList.add(new TrackItem("Hourglass", Uri.parse("android.resource://"+getPackageName()+"/raw/hourglass")));
 
