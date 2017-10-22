@@ -1,21 +1,15 @@
 package com.veriqus.kolekcja;
 
 import android.content.Context;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
-
-import static android.R.drawable.ic_media_pause;
-import static android.R.drawable.ic_media_play;
 
 /**
  * Created by krzysztofmarczewski on 22.10.2017.
@@ -25,12 +19,13 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
 
         private List<TrackItem> mTracks;
         private Context mContext;
-        MediaPlayer mediaPlayer = new MediaPlayer();
+        MediaPlayer mediaPlayer;
 
 
-    public TrackAdapter (Context context, List<TrackItem> trackItems) {
+    public TrackAdapter (Context context, List<TrackItem> trackItems, MediaPlayer player) {
             mTracks = trackItems;
             mContext = context;
+            mediaPlayer = player;
         }
 
     private Context getContext() {
@@ -60,38 +55,20 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
         public void onClick(View view) {
             int position = getAdapterPosition(); // gets item position
             Toast.makeText(getContext(), position+"", Toast.LENGTH_SHORT).show();
-            ImageButton play = (ImageButton) view.findViewById(R.id.playButton);
 
             if (mediaPlayer==null) {
-                mediaPlayer = new MediaPlayer();
-                player(mTracks.get(position).getTrack());
-                play.setImageResource(ic_media_pause);
-            }
-            else if (mediaPlayer.isPlaying()) {
-                mediaPlayer.stop();
-                mediaPlayer.release();
-                mediaPlayer = null;
-                play.setImageResource(ic_media_play);
+                ((TrackListActivity)getContext()).player(mTracks.get(position).getTrack());
+                ((TrackListActivity)getContext()).changeButton(true);
+                ((TrackListActivity)getContext()).setPosition(position);
 
-            }
-            else {
-                player(mTracks.get(position).getTrack());
-                play.setImageResource(ic_media_pause);
+            } else {
+                ((TrackListActivity)getContext()).changeButton(true);
+                ((TrackListActivity)getContext()).player(mTracks.get(position).getTrack());
+                ((TrackListActivity)getContext()).setPosition(position);
             }
         }
     }
 
-
-    public void player(Uri uri){
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        try {
-            mediaPlayer.setDataSource(getContext(), uri);
-            mediaPlayer.prepare();
-            mediaPlayer.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public TrackAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

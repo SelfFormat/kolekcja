@@ -17,23 +17,35 @@
         <ImageButton
             android:id="@+id/prevTrackButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_media_previous" />
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/previous" />
 
         <ImageButton
             android:id="@+id/playButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_media_play" />
+            android:scaleType="fitCenter"
+
+            app:srcCompat="@drawable/play" />
+
+        <ImageButton
+            android:layout_weight="1"
+            android:id="@+id/stopButton"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/stop" />
 
         <ImageButton
             android:id="@+id/nextTrackButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_media_next" />
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/skip" />
 
     </LinearLayout>
 
