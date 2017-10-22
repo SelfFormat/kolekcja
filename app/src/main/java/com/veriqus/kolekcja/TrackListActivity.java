@@ -114,6 +114,7 @@ public class TrackListActivity extends AppCompatActivity {
                             player(trackList.get(position+1).getTrack());
                             changeButton(true);
                             position++;
+
                         } else {
                             Toast.makeText(getApplicationContext(), "no next song", Toast.LENGTH_SHORT).show();
                         }
